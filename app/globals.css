@@ -2,7 +2,8 @@
 
 :root {
   --background: #0f1519;
-  --foreground: #e6f7ee;
+  --foreground: #d6ddd6;
+  --brand: #00ab55;
 }
 
 @theme inline {
@@ -16,6 +17,47 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+html {
+  scrollbar-color: rgba(148, 163, 184, 0.65) transparent;
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, and Safari themed scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::selection {
+  background: rgba(0, 171, 85, 0.35);
+  color: #ecfdf5;
 }
 
 .hero-tape-track {
@@ -53,4 +95,99 @@ body {
 
 .animate-hero-float {
   animation: hero-float 14s ease-in-out infinite;
+}
+
+@keyframes lineage-glow-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 171, 85, 0.15), 0 0 12px rgba(0, 171, 85, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 rgba(0, 171, 85, 0.25), 0 0 22px rgba(0, 171, 85, 0.38);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 171, 85, 0.15), 0 0 12px rgba(0, 171, 85, 0.2);
+  }
+}
+
+@keyframes lineage-charters-pulse {
+  0% {
+    text-shadow: 0 0 8px rgba(0, 171, 85, 0.35), 0 0 16px rgba(0, 171, 85, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(0, 171, 85, 0.5), 0 0 24px rgba(0, 171, 85, 0.35);
+  }
+  100% {
+    text-shadow: 0 0 8px rgba(0, 171, 85, 0.35), 0 0 16px rgba(0, 171, 85, 0.2);
+  }
+}
+
+.lineage-glow {
+  animation: lineage-glow-pulse 3.2s ease-in-out infinite;
+}
+
+.lineage-charters-glow {
+  animation: lineage-charters-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-load-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.route-transition {
+  animation: route-enter 420ms ease-out;
+}
+
+.hero-load-up {
+  opacity: 0;
+  animation: hero-load-up 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-delay-1 {
+  animation-delay: 70ms;
+}
+
+.hero-delay-2 {
+  animation-delay: 170ms;
+}
+
+.hero-delay-3 {
+  animation-delay: 290ms;
+}
+
+.hero-delay-4 {
+  animation-delay: 420ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-transition,
+  .hero-load-up,
+  .hero-tape-track,
+  .animate-hero-float,
+  .lineage-glow,
+  .lineage-charters-glow {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }
